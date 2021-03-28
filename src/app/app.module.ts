@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +16,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
