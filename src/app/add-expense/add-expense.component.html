@@ -1,1 +1,41 @@
 <p>Add Expense Component</p>
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+	<div>
+    	<label for="date">Date</label>
+    	<input id="date" type="text" formControlName="date">
+	</div>
+
+	<div>
+		<label for="place">Place</label>
+		<input id="place" type="text" formControlName="place">
+	</div>
+
+	<div>
+		<label for="amount">Amount</label>
+		<input id="amount" type="text" formControlName="amount">
+	</div>
+
+	<div>
+		<label for="description">Description</label>
+		<input id="description" type="text" formControlName="description">
+	</div>
+
+	<div>
+		<label for="category">Category</label>
+		<input id="category" type="text" formControlName="category">
+	</div>
+
+	<div>
+		<label for="subcategory">Subcategory</label>
+		<input id="subcategory" type="text" formControlName="subcategory">
+	</div>
+
+	<button class="button" type="submit">Add</button>
+
+</form>
+<p>Date: {{data.date}}</p>
+<p>Place: {{data.place}}</p>
+<p>Amount: {{data.amount}}</p>
+<p>Description: {{data.description}}</p>
+<p>Category: {{data.category}}</p>
+<p>Subcategory: {{data.subcategory}}</p>
