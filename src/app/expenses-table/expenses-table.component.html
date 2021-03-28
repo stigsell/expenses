@@ -1,0 +1,24 @@
+<div class="container">
+	<table class="table table-striped table-sm">
+			<thead>
+				<tr>
+					<th scope="col">Date</th>
+					<th scope="col">Place</th>
+					<th scope="col">Amount</th>
+					<th scope="col">Description</th>
+					<th scope="col">Category</th>
+					<th scope="col">Subcategory</th>
+				</tr>
+			</thead>
+		<tbody>
+			<tr *ngFor="let expense of expenses;">
+				<th scope="row">{{ expense.date }}</th>
+				<td>{{ expense.place }}</td>
+				<td>{{ expense.amount }}</td>
+				<td>{{ expense.description }}</td>
+				<td>{{ expense.category }}</td>
+				<td>{{ expense.subcategory }}</td>
+		</tbody>
+
+	</table>
+</div>

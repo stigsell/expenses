@@ -5,12 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
+import { HeaderComponent } from './header/header.component';
+import { ExpensesTableComponent } from './expenses-table/expenses-table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddExpenseComponent
+    AddExpenseComponent,
+    HeaderComponent,
+    ExpensesTableComponent
   ],
   imports: [
     BrowserModule,

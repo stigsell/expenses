@@ -48,6 +48,7 @@ export class AddExpenseComponent implements OnInit {
     this.localStorageService.set("expenses", this.expenses);
     console.log(this.expenses);
     this.checkoutForm.reset();
+    location.reload();
   }
 
 }

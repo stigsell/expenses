@@ -1,0 +1,17 @@
+.expenses-table th {
+	padding-left: 40px;
+	padding-right: 40px;
+	margin-top: 50px;
+	margin-bottom: 5px;
+}
+
+.expenses-table td {
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.table {
+	margin-top:50px;
+}
