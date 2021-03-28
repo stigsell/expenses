@@ -17,14 +17,14 @@ export class AddExpenseComponent implements OnInit {
     	category: '',
     	subcategory: ''
   	});
-  	data = {
+  	expenses = [{
   		date: "",
   		place: "",
   		amount: "",
   		description: "",
   		category: "",
   		subcategory: ""
-  	};
+  	}];
  	constructor(
   		private formBuilder: FormBuilder
   		) { }
@@ -36,8 +36,8 @@ export class AddExpenseComponent implements OnInit {
     // Process checkout data here
     // this.items = this.cartService.clearCart();
     console.log(this.checkoutForm.value);
-    this.data = this.checkoutForm.value;
-    console.log(this.data);
+    this.expenses.push(this.checkoutForm.value);
+    console.log(this.expenses);
     this.checkoutForm.reset();
   }
 
