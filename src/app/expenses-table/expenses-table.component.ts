@@ -10,7 +10,7 @@ export class ExpensesTableComponent implements OnInit {
 	expenses = [{
   		date: "",
   		place: "",
-  		amount: "",
+  		amount: 0.0,
   		description: "",
   		category: "",
   		subcategory: ""
@@ -21,9 +21,10 @@ export class ExpensesTableComponent implements OnInit {
 
   ngOnInit(): void {
   	this.expenses = this.localStorageService.get("expenses");
-  		if (Object.keys(this.expenses).length === 0) {
-  			this.expenses = [];
-  		}
+  	console.log(this.expenses)
+  		// if (Object.keys(this.expenses).length === 0) {
+  		// 	this.expenses = [];
+  		// }
   }
 
 }

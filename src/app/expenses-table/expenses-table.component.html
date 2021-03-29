@@ -11,13 +11,14 @@
 				</tr>
 			</thead>
 		<tbody>
-			<tr *ngFor="let expense of expenses;">
-				<th scope="row">{{ expense.date }}</th>
-				<td>{{ expense.place }}</td>
-				<td>{{ expense.amount }}</td>
-				<td>{{ expense.description }}</td>
-				<td>{{ expense.category }}</td>
-				<td>{{ expense.subcategory }}</td>
+				<tr *ngFor="let expense of expenses;">
+					<th scope="row">{{ expense.date }}</th>
+					<td>{{ expense.place }}</td>
+					<td>${{ expense.amount }}</td>
+					<td>{{ expense.description }}</td>
+					<td>{{ expense.category }}</td>
+					<td>{{ expense.subcategory }}</td>
+				</tr>
 		</tbody>
 
 	</table>
