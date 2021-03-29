@@ -10,7 +10,7 @@ import { LocalStorageService } from '../local-storage.service';
   styleUrls: ['./add-expense.component.css']
 })
 export class AddExpenseComponent implements OnInit {
-	checkoutForm = this.formBuilder.group({
+	addExpenseForm = this.formBuilder.group({
     	date: '',
     	place: '',
     	amount: '',
@@ -21,7 +21,7 @@ export class AddExpenseComponent implements OnInit {
   	expenses = [{
   		date: "",
   		place: "",
-  		amount: "",
+  		amount: 0.0,
   		description: "",
   		category: "",
   		subcategory: ""
@@ -40,14 +40,20 @@ export class AddExpenseComponent implements OnInit {
   	}
 
   	onSubmit(): void {
-    // Process checkout data here
-    // this.items = this.cartService.clearCart();
-    console.log(this.checkoutForm.value);
-    console.log(this.expenses);
-    this.expenses.push(this.checkoutForm.value);
-    this.localStorageService.set("expenses", this.expenses);
-    console.log(this.expenses);
-    this.checkoutForm.reset();
+    if (this.addExpenseForm.value.date != "" &&
+      this.addExpenseForm.value.place != "" && 
+      this.addExpenseForm.value.amount != "" && 
+      this.addExpenseForm.value.description != "" && 
+      this.addExpenseForm.value.category != "") {
+      console.log(this.addExpenseForm.value);
+      console.log(this.expenses);
+      this.expenses.push(this.addExpenseForm.value);
+      this.localStorageService.set("expenses", this.expenses);
+      console.log(this.expenses);
+      this.addExpenseForm.reset();
+      location.reload();
+    }
+    
   }
 
 }

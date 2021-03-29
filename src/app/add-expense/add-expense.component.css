@@ -1,18 +1,32 @@
 .add-expense-form input {
 	margin-left: 10px;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
+.add-expense-form select {
+	margin-left: 10px;
 	margin-right: 30px;
 }
 
-.expenses-table th {
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-top: 50px;
-	padding-bottom: 5px;
+.input-group-text {
+	margin-left: 10px;
+	margin-right: -10px;
+	margin-top: 10px;
 }
 
-.expenses-table td {
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+#date {
+	width: 70px;
+}
+
+#place {
+	width: 250px;
+}
+
+#amount {
+	width: 100px;
+}
+
+#description {
+	width: 400px;
 }
