@@ -7,10 +7,10 @@ import { LocalStorageService } from '../local-storage.service';
   styleUrls: ['./expenses-table.component.css']
 })
 export class ExpensesTableComponent implements OnInit {
-	expenses = [{
+ 	expenses = [{
   		date: "",
   		place: "",
-  		amount: 0.0,
+  		amount: "",
   		description: "",
   		category: "",
   		subcategory: ""
@@ -22,9 +22,6 @@ export class ExpensesTableComponent implements OnInit {
   ngOnInit(): void {
   	this.expenses = this.localStorageService.get("expenses");
   	console.log(this.expenses)
-  		// if (Object.keys(this.expenses).length === 0) {
-  		// 	this.expenses = [];
-  		// }
   }
 
 }

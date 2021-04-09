@@ -13,5 +13,13 @@
 }
 
 .table {
-	margin-top:50px;
+	margin-left: 50px;
+	margin-right: 50px;
+	width: 95%;
+}
+
+.scroll-table {
+	height: 400px;
+	margin-bottom: 50px;
+	overflow: auto;
 }

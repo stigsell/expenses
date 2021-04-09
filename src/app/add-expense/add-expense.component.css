@@ -1,3 +1,7 @@
+.add-expense-form label {
+	margin-top: 10px;
+}
+
 .add-expense-form input {
 	margin-left: 10px;
 	margin-right: 20px;
@@ -7,10 +11,19 @@
 .add-expense-form select {
 	margin-left: 10px;
 	margin-right: 30px;
+	margin-top: 10px;
+}
+
+.add-expense-form button {
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 80px;
 }
 
 .add-expense-form {
 	margin-top: 40px;
+	margin-left: 50px;
+	margin-bottom: 50px;
 }
 
 .input-group-text {
@@ -19,12 +32,13 @@
 	margin-top: 10px;
 }
 
+
 #date {
 	width: 70px;
 }
 
 #place {
-	width: 250px;
+	width: 150px;
 }
 
 #amount {
@@ -32,5 +46,13 @@
 }
 
 #description {
-	width: 400px;
+	width: 300px;
+}
+
+#category {
+	width: 150px;
+}
+
+#subcategory {
+	width: 100px;
 }

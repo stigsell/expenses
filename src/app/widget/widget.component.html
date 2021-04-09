@@ -1,6 +1,39 @@
-<div class="card text-dark bg-light mb-3" style="max-width: 12rem;">
-  <div class="card-header">2021 Total Expenses</div>
-  <div class="card-body">
-    <h2 class="card-title">${{ totalExpenses }}</h2>
-  </div>
+<!-- <div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="card text-dark bg-light mb-3" style="max-width: 14rem;">
+		  		<div class="card-header">Total Expenses (Year)</div>
+		  		<div class="card-body">
+		    		<h2 class="card-title">${{ totalExpenses | number:'1.0-2' }}</h2>
+		  		</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card text-dark bg-light mb-3" style="max-width: 14rem;">
+		  		<div class="card-header">Average Expense (Year)</div>
+		  		<div class="card-body">
+		    		<h2 class="card-title">${{ averageExpense | number:'1.0-2' }}</h2>
+		  		</div>
+			</div>
+		</div>
+	</div>
+</div> -->
+
+<div class="container">
+	<div class="card-group">
+		<div class="card text-dark bg-light mb-3" style="max-width: 14rem;">
+	  		<div class="card-header">Total Expenses (Year)</div>
+	  		<div class="card-body">
+	    		<h2 class="card-title">${{ totalExpenses | number:'1.0-2' }}</h2>
+	  		</div>
+		</div>
+
+
+		<div class="card text-dark bg-light mb-3" style="max-width: 14rem;">
+	  		<div class="card-header">Average Expense (Year)</div>
+	  		<div class="card-body">
+	    		<h2 class="card-title">${{ averageExpense | number:'1.0-2' }}</h2>
+	  		</div>
+		</div>
+	</div>
 </div>
