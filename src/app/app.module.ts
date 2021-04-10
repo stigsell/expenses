@@ -8,6 +8,7 @@ import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { HeaderComponent } from './header/header.component';
 import { ExpensesTableComponent } from './expenses-table/expenses-table.component';
 import { WidgetComponent } from './widget/widget.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { WidgetComponent } from './widget/widget.component';
     AddExpenseComponent,
     HeaderComponent,
     ExpensesTableComponent,
-    WidgetComponent
+    WidgetComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

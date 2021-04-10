@@ -21,7 +21,8 @@ export class ExpensesTableComponent implements OnInit {
 
   ngOnInit(): void {
   	this.expenses = this.localStorageService.get("expenses");
-  	console.log(this.expenses)
+  	console.log(this.expenses);
+
   }
 
 }
