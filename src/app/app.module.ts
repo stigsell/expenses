@@ -9,6 +9,9 @@ import { HeaderComponent } from './header/header.component';
 import { ExpensesTableComponent } from './expenses-table/expenses-table.component';
 import { WidgetComponent } from './widget/widget.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditExpenseComponent } from './edit-expense/edit-expense.component';
+import { GraphQLModule } from './graphql.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -18,13 +21,16 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeaderComponent,
     ExpensesTableComponent,
     WidgetComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditExpenseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    GraphQLModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

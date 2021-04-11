@@ -45,13 +45,13 @@ export class AddExpenseComponent implements OnInit {
       this.addExpenseForm.value.amount != "" && 
       this.addExpenseForm.value.description != "" && 
       this.addExpenseForm.value.category != "") {
-      console.log(this.addExpenseForm.value);
-      console.log(this.expenses);
-      this.expenses.push(this.addExpenseForm.value);
-      this.localStorageService.set("expenses", this.expenses);
-      console.log(this.expenses);
-      this.addExpenseForm.reset();
-      location.reload();
+        console.log(this.addExpenseForm.value);
+        console.log(this.expenses);
+        this.expenses.push(this.addExpenseForm.value);
+        this.localStorageService.set("expenses", this.expenses);
+        console.log(this.expenses);
+        this.addExpenseForm.reset();
+        location.reload();
     }
     
   }
