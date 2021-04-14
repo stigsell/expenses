@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../local-storage.service';
 import { Apollo, gql } from 'apollo-angular';
 
+import { environment } from './../../environments/environment';
+
 @Component({
   selector: 'app-widget',
   templateUrl: './widget.component.html',
@@ -36,18 +38,23 @@ export class WidgetComponent implements OnInit {
     }
 
   	ngOnInit(): void {
-      this.apollo.watchQuery({
-        query: this.GET_ALL_EXPENSES,
-      })
-      .valueChanges.subscribe((result: any) => {
-        this.expenses = result?.data?.expenses;
-        this.loading = result.loading;
-        this.error = result.error;
+      if(environment.production) {
+        this.expenses = this.localStorageService.get("expenses");
         this.totalExpenses = this.getTotalExpenses();
         this.averageExpense = this.totalExpenses / this.expenses.length;
-        console.log(this.averageExpense);
-      })
-  		// this.expenses = this.localStorageService.get("expenses");
+      } else {
+        this.apollo.watchQuery({
+          query: this.GET_ALL_EXPENSES,
+        })
+        .valueChanges.subscribe((result: any) => {
+          this.expenses = result?.data?.expenses;
+          this.loading = result.loading;
+          this.error = result.error;
+          this.totalExpenses = this.getTotalExpenses();
+          this.averageExpense = this.totalExpenses / this.expenses.length;
+          console.log(this.averageExpense);
+        })
+      }
   		
   }
   	getTotalExpenses(): number {
