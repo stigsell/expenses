@@ -3,8 +3,8 @@
 </div> -->
 <!-- <h1 *ngIf="loading">Loading...</h1> -->
 <h1 *ngIf="error">Error loading data</h1>
-<div *ngIf="expenses" class="container-fluid scroll-table">
-	<table class="table table-striped table-sm">
+<div *ngIf="expenses" class="container-fluid scroll-table table-responsive">
+	<table class="table table-striped">
 			<thead>
 				<tr>
 					<th scope="col">Date</th>
@@ -13,16 +13,20 @@
 					<th scope="col">Description</th>
 					<th scope="col">Category</th>
 					<th scope="col">Subcategory</th>
+					<th scope="col">Delete</th>
 				</tr>
 			</thead>
 		<tbody>
-				<tr *ngFor="let expense of expenses;" >
-					<th scope="row">{{ expense.date }}</th>
-					<td>{{ expense.place }}</td>
-					<td>${{ expense.amount }}</td>
-					<td>{{ expense.description }}</td>
-					<td>{{ expense.category }}</td>
-					<td>{{ expense.subcategory }}</td>
+				<tr *ngFor="let expense of expenses;" [attr.id]="expense.id">
+					<th scope="row" (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.date }}</th>
+					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.place }}</td>
+					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">${{ expense.amount }}</td>
+					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.description }}</td>
+					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.category }}</td>
+					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.subcategory }}</td>
+					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1"><button *ngIf="buttonId == expense.id" type="button" class="btn btn-danger btn-sm" id="delete" (click)="deleteRow(expense.id)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+  <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+</svg></button></td>
 				</tr>
 		</tbody>
 	</table>

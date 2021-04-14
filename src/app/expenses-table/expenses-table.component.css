@@ -5,21 +5,27 @@
 	margin-bottom: 5px;
 }
 
-.expenses-table td {
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+tr {
+	height: 57px;
 }
 
 .table {
 	margin-top: 50px;
 	margin-left: 50px;
 	margin-right: 50px;
-	width: 95%;
+	width: 90%;
 }
 
 .scroll-table {
 	margin-bottom: 50px;
 	overflow: auto;
+}
+
+/*.expenses-table tr {
+	height: 50px;
+}*/
+
+#delete {
+	/*height: 30px;*/
+	width: 50px;
 }

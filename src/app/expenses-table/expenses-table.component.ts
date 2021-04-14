@@ -13,6 +13,8 @@ export class ExpensesTableComponent implements OnInit {
  	expenses: any[];
   loading = true;
   error: any;
+  showButton = false;
+  buttonId: Number;
 
 
   GET_ALL_EXPENSES = gql`
@@ -28,11 +30,20 @@ export class ExpensesTableComponent implements OnInit {
       }
     }
   `;
+
+  DELETE_EXPENSE = gql`
+    mutation DeleteExpense($id: Int!) {
+      deleteExpense(id: $id) {
+      success
+    }
+  }
+  `;
 	constructor(
 		private localStorageService: LocalStorageService,
     private apollo: Apollo
 		) { 
       this.expenses = [];
+      this.buttonId = -1;
   }
 
   ngOnInit(): void {
@@ -46,6 +57,23 @@ export class ExpensesTableComponent implements OnInit {
       console.log(this.expenses);
     })
 
+  }
+
+  deleteRow(id: Number): void {
+    console.log(id);
+    this.buttonId = id;
+    this.apollo.mutate({
+        mutation: this.DELETE_EXPENSE,
+        variables: {
+          id: id
+        }
+      }).subscribe(({data}) => {
+        console.log(data);
+        location.reload();  // TODO don't refresh the page visually to the user
+        // TODO provide visual confirmation to user that expense was added successfully
+      }, (error) => {
+        console.log("Error", error);
+      });
   }
 
 }
