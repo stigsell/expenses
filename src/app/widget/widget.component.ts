@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorageService } from '../local-storage.service';
-import { Apollo, gql } from 'apollo-angular';
+import { Expense, GetAllExpensesService } from '../get-all-expenses.service';
+import { Apollo, QueryRef, gql } from 'apollo-angular';
+import { Observable, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-widget',
@@ -8,51 +10,39 @@ import { Apollo, gql } from 'apollo-angular';
   styleUrls: ['./widget.component.css']
 })
 export class WidgetComponent implements OnInit {
-    expenses: any[];
+    expenses: any;
+    getExpensesQuery!: QueryRef<any>;
     loading = true;
-    error: any;
-
-
-    GET_ALL_EXPENSES = gql`
-      query GetAllExpenses {
-        expenses {
-          id
-          date
-          place
-          amount
-          description
-          category
-          subcategory
-        }
-      }
-    `;
+    private querySubscription!: Subscription;
   	totalExpenses: number = 0;
   	averageExpense: number = 0;
+
   	constructor(
-  		private localStorageService: LocalStorageService,
+  		private getAllExpensesService: GetAllExpensesService,
       private apollo: Apollo
   		) { 
-      this.expenses = [];
     }
 
   	ngOnInit(): void {
-      this.apollo.watchQuery({
-        query: this.GET_ALL_EXPENSES,
-      })
-      .valueChanges.subscribe((result: any) => {
-        this.expenses = result?.data?.expenses;
-        this.loading = result.loading;
-        this.error = result.error;
-        this.totalExpenses = this.getTotalExpenses();
-        this.averageExpense = this.totalExpenses / this.expenses.length;
-        console.log(this.averageExpense);
-      })
-  		// this.expenses = this.localStorageService.get("expenses");
-  		
+      this.getExpensesQuery = this.getAllExpensesService.watch({
+
+    }, {
+      pollInterval: 500  // check for new data every .5 seconds. 
+      // AddExpense doesn't update the table so this is necessary. 
+      // It is not necessary for deleteExpense.
+    });
+    this.querySubscription = this.getExpensesQuery
+    .valueChanges
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.expenses = data.expenses;
+      this.totalExpenses = this.getTotalExpenses();
+      this.averageExpense = this.getTotalExpenses() / this.expenses.length;
+    });
   }
   	getTotalExpenses(): number {
   		let sum = 0;
-  		this.expenses.forEach(expense => {
+  		this.expenses.forEach((expense: any) => {
   			if (isNaN(Number(expense.amount))) {
   				console.log("Not a number: " + expense.amount)
   			}

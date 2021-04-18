@@ -3,7 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { Expense, GetAllExpensesService } from '../get-all-expenses.service';
 import { DeleteExpenseService } from '../delete-expense.service';
 import { EditExpenseComponent } from '../edit-expense/edit-expense.component';
-import { Observable } from 'rxjs';
+import { Apollo, QueryRef, gql } from 'apollo-angular';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -12,11 +13,12 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./expenses-table.component.css']
 })
 export class ExpensesTableComponent implements OnInit {
- 	expenses!: Observable<Expense[]>;
+  expenses: any;
+  getExpensesQuery!: QueryRef<any>;
   loading = true;
-  error: any;
   showButton = false;
   buttonId: Number;
+  private querySubscription!: Subscription;
 
 	constructor(
 		private getAllExpensesService: GetAllExpensesService,
@@ -26,12 +28,19 @@ export class ExpensesTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.expenses = this.getAllExpensesService.watch()
-      .valueChanges
-      .pipe(
-        map(result => result.data.expenses)
-        );
+    this.getExpensesQuery = this.getAllExpensesService.watch({
 
+    }, {
+      pollInterval: 500  // check for new data every .5 seconds. 
+      // AddExpense doesn't update the table so this is necessary. 
+      // It is not necessary for deleteExpense.
+    });
+    this.querySubscription = this.getExpensesQuery
+    .valueChanges
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.expenses = data.expenses;
+    });
   }
 
   deleteRow(id: Number): void {
@@ -40,7 +49,6 @@ export class ExpensesTableComponent implements OnInit {
         id: id
       })
       .subscribe();
-     location.reload();  // TODO don't refresh the page visually to the user
+     this.getExpensesQuery.refetch();  // refresh table
   }
-
 }
