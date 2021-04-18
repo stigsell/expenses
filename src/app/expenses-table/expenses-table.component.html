@@ -3,7 +3,7 @@
 </div> -->
 <!-- <h1 *ngIf="loading">Loading...</h1> -->
 <h1 *ngIf="error">Error loading data</h1>
-<div *ngIf="expenses" class="container-fluid scroll-table table-responsive">
+<div *ngIf="expenses" class="container-fluid scroll-table table-responsive-sm">
 	<table class="table table-striped">
 			<thead>
 				<tr>
@@ -17,7 +17,7 @@
 				</tr>
 			</thead>
 		<tbody>
-				<tr *ngFor="let expense of expenses;" [attr.id]="expense.id">
+				<tr *ngFor="let expense of expenses | async;" [attr.id]="expense.id">
 					<th scope="row" (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.date }}</th>
 					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">{{ expense.place }}</td>
 					<td (mouseenter)="buttonId=expense.id" (mouseleave)="buttonId=-1">${{ expense.amount }}</td>
